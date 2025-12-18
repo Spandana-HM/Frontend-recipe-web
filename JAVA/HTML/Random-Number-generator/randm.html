@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(55, 88, 234, 0.5);
+        }
+        .container{
+            box-shadow:0 4px 20px 0 rgba(0,0,0,0.2);
+            width: 25%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .min-max{
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        .input-no{
+            width: 30%;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid rgb(200, 196, 196);
+            outline: 1px solid rgb(99, 97, 97);
+            cursor: text;
+        }
+        #btn{
+            margin: 20px 0;
+            padding: 10px;
+            width: 80%;
+            border-radius:4px ;
+            font-size: 16px;
+            background-color: rgb(4, 196, 4);
+            color: white;
+            border: none;
+        }#btn:hover{
+            background-color: rgb(5, 175, 5);
+        }
+        #msg{
+            font-size: 20px;
+            font-weight: 550;
+            width: 80%;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        #reset-id{
+            padding: 10px;
+            background-color: red;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            width: 30%;
+        }
+        #reset-id:hover{
+            background-color: rgb(224, 4, 4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Random Number Generator</h2>
+        <div class="min-max">
+            <label for="min-id">Minimum:</label>
+            <input type="text" id="min-id" class="input-no">
+        </div>
+        <div class="min-max">
+            <label for="max-id">Maximum: </label>
+            <input type="text" id="max-id" class="input-no">
+        </div>
+        <button id="btn">Generate Random Number</button>
+        <p id="msg">Click the button to generate</p>
+        <input type="reset" id="reset-id">
+    </div>
+    <script>
+        let btnEl=document.getElementById("btn");
+        let res=document.querySelector("#msg");
+
+        btnEl.addEventListener("click", ()=>{
+            let minVal=document.getElementById("min-id").value;            
+            let maxVal=document.getElementById("max-id").value;
+                        
+            let minNum=Number(minVal);
+            let maxNum=Number(maxVal);
+
+            if(isNaN(minNum) || isNaN(maxNum) || minNum > maxNum){
+                res.textContent='please enter a valid numbers!!';
+                return;
+            }
+            let rndm=Math.floor(Math.random()*(maxNum-minNum+1))+minNum;
+            res.textContent=`Random number generated is ${rndm}`;
+        });
+
+        let resetEl=document.getElementById("reset-id");
+        resetEl.addEventListener("click", ()=>{
+            let minInput=document.getElementById("min-id");
+            let maxInput=document.getElementById("max-id");
+            minInput.value="";
+            maxInput.value="";
+            res.textContent=`Click the button to generate`;
+        })
+    </script>
+</body>
+</html>
