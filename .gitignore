@@ -1,0 +1,5 @@
+*.exe
+*.out
+*.class
+node_modules/
+.env
